@@ -69,5 +69,33 @@ namespace Datos
             }
             return result;
         }
+
+        public string Editar(int intId, string strNombre, bool bitEnabled)
+        {
+            string result = "false";
+
+            using (var connection = new SqlConnection(Conexion.cadena))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_UpdateRegion", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter prmId = new SqlParameter("@RegionId", SqlDbType.Int);
+                prmId.Value = intId;
+                command.Parameters.Add(prmId);
+
+                SqlParameter prmName = new SqlParameter("@RegionName", SqlDbType.VarChar, 50);
+                prmName.Value = strNombre;
+                command.Parameters.Add(prmName);
+
+                SqlParameter prmEnabled = new SqlParameter("@Enabled", SqlDbType.Bit);
+                prmEnabled.Value = bitEnabled;
+                command.Parameters.Add(prmEnabled);
+
+                command.ExecuteNonQuery();
+                result = "true";
+            }
+            return result;
+        }
     }
 }

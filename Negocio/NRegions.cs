@@ -16,9 +16,14 @@ namespace Negocio
             return result;
         }
 
-        public string Registrar(string Nombre)
+        public string Registrar(string strNombre, bool bitEnabled)
         {
-            return datos.Registrar(Nombre, true);
+            return datos.Registrar(strNombre, bitEnabled);
+        }
+
+        public string Editar(int intId, string strNombre, bool bitEnabled)
+        {
+            return datos.Editar(intId, strNombre, bitEnabled);
         }
     }
 

@@ -1,5 +1,4 @@
-﻿using Datos;
-using Negocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,40 +8,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
-    public partial class frmRegionRegistrar : Form
+    public partial class frmRegionEditar : Form
     {
-        public frmRegionRegistrar()
+        public frmRegionEditar()
         {
             InitializeComponent();
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void btnGrabar_Click(object sender, EventArgs e)
         {
-            if (txtRegionName.Text.Trim() == "")
+            if (txtRegionNameEdit.Text.Trim() == "")
             {
-                errorProvider1.SetError(txtRegionName, "Ingrese Nombre Region");
+                errorProvider1.SetError(txtRegionNameEdit, "Ingrese Nombre Region");
             }
             else
             {
                 NRegions negocio = new NRegions();
                 frmRegions frm = (frmRegions)Application.OpenForms["frmRegions"];
                 try
-                {                    
+                {
                     string mensaje = string.Empty;
-                    string regionName = txtRegionName.Text.Trim();
-                    bool enabled =  true;                   
-                    mensaje = negocio.Registrar(regionName, enabled);
+                    int id = Convert.ToInt32(txtIdEdit.Text);
+                    string regionName = txtRegionNameEdit.Text.Trim();
+                    bool enabled = true;
+                    mensaje = negocio.Editar(id, regionName, enabled);
                     if (mensaje == "true")
                     {
-                        MessageBox.Show("Registro Exitoso");
-                        this.txtRegionName.Text = "";
+                        MessageBox.Show("Se grabo Correctamente");
+                        this.txtRegionNameEdit.Text = "";
+                        this.txtIdEdit.Text = "";
                         this.Hide();
                         frm.Show();
-                        frm.listar();                        
+                        frm.listar();
+                        
                     }
                     else
                     {
@@ -58,11 +59,6 @@ namespace Presentacion
                     negocio = null;
                 }
             }
-        }
-
-        private void frmRegionRegistrar_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

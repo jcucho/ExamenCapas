@@ -28,47 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             txtRegionName = new TextBox();
             btnRegistrar = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(68, 35);
+            label1.Location = new Point(11, 9);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(142, 25);
+            label1.Size = new Size(94, 15);
             label1.TabIndex = 5;
             label1.Text = "Nombre Region:";
             // 
             // txtRegionName
             // 
-            txtRegionName.Location = new Point(230, 32);
+            txtRegionName.Location = new Point(11, 28);
+            txtRegionName.Margin = new Padding(2);
             txtRegionName.Name = "txtRegionName";
-            txtRegionName.Size = new Size(272, 31);
+            txtRegionName.Size = new Size(192, 23);
             txtRegionName.TabIndex = 4;
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(526, 32);
+            btnRegistrar.Location = new Point(228, 28);
+            btnRegistrar.Margin = new Padding(2);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(112, 34);
+            btnRegistrar.Size = new Size(78, 23);
             btnRegistrar.TabIndex = 6;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = true;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // frmRegionRegistrar
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 104);
+            ClientSize = new Size(337, 62);
             Controls.Add(btnRegistrar);
             Controls.Add(label1);
             Controls.Add(txtRegionName);
+            Margin = new Padding(2);
             Name = "frmRegionRegistrar";
             Text = "frmRegionRegistrar";
+            Load += frmRegionRegistrar_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -78,5 +91,6 @@
         private Label label1;
         private TextBox txtRegionName;
         private Button btnRegistrar;
+        private ErrorProvider errorProvider1;
     }
 }

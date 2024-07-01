@@ -30,18 +30,17 @@
         {
             btnListar = new Button();
             dgvRegions = new DataGridView();
+            btnRegistrar = new Button();
             RegionId = new DataGridViewTextBoxColumn();
             RegionName = new DataGridViewTextBoxColumn();
-            btnRegistrar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRegions).BeginInit();
             SuspendLayout();
             // 
             // btnListar
             // 
-            btnListar.Location = new Point(37, 19);
-            btnListar.Margin = new Padding(4, 5, 4, 5);
+            btnListar.Location = new Point(26, 11);
             btnListar.Name = "btnListar";
-            btnListar.Size = new Size(107, 38);
+            btnListar.Size = new Size(75, 23);
             btnListar.TabIndex = 0;
             btnListar.Text = "Listar";
             btnListar.UseVisualStyleBackColor = true;
@@ -51,49 +50,45 @@
             // 
             dgvRegions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRegions.Columns.AddRange(new DataGridViewColumn[] { RegionId, RegionName });
-            dgvRegions.Location = new Point(37, 67);
-            dgvRegions.Margin = new Padding(4, 5, 4, 5);
+            dgvRegions.Location = new Point(26, 40);
             dgvRegions.Name = "dgvRegions";
             dgvRegions.RowHeadersWidth = 62;
             dgvRegions.RowTemplate.Height = 25;
-            dgvRegions.Size = new Size(814, 568);
+            dgvRegions.Size = new Size(570, 341);
             dgvRegions.TabIndex = 1;
-            // 
-            // RegionId
-            // 
-            RegionId.DataPropertyName = "RegionId";
-            RegionId.HeaderText = "RegionId";
-            RegionId.MinimumWidth = 8;
-            RegionId.Name = "RegionId";
-            RegionId.Width = 150;
-            // 
-            // RegionName
-            // 
-            RegionName.DataPropertyName = "RegionName";
-            RegionName.HeaderText = "RegionName";
-            RegionName.MinimumWidth = 8;
-            RegionName.Name = "RegionName";
-            RegionName.Width = 150;
+            dgvRegions.DoubleClick += dgvRegions_DoubleClick;
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(160, 19);
+            btnRegistrar.Location = new Point(112, 11);
+            btnRegistrar.Margin = new Padding(2);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(112, 40);
+            btnRegistrar.Size = new Size(78, 24);
             btnRegistrar.TabIndex = 4;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = true;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
+            // RegionId
+            // 
+            RegionId.DataPropertyName = "RegionId";
+            RegionId.HeaderText = "Id";
+            RegionId.Name = "RegionId";
+            // 
+            // RegionName
+            // 
+            RegionName.DataPropertyName = "RegionName";
+            RegionName.HeaderText = "Region";
+            RegionName.Name = "RegionName";
+            // 
             // frmRegions
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 750);
+            ClientSize = new Size(640, 449);
             Controls.Add(btnRegistrar);
             Controls.Add(dgvRegions);
             Controls.Add(btnListar);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "frmRegions";
             Text = "Regions";
             ((System.ComponentModel.ISupportInitialize)dgvRegions).EndInit();
@@ -101,11 +96,10 @@
         }
 
         #endregion
-
-        private Button btnListar;
-        private DataGridView dgvRegions;
+        private Button btnRegistrar;
+        public Button btnListar;
+        public DataGridView dgvRegions;
         private DataGridViewTextBoxColumn RegionId;
         private DataGridViewTextBoxColumn RegionName;
-        private Button btnRegistrar;
     }
 }
