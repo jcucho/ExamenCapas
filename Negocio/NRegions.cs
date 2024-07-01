@@ -15,5 +15,12 @@ namespace Negocio
             result = datos.Listar();
             return result;
         }
+
+        public string Registrar(string Nombre)
+        {
+            return datos.Registrar(Nombre, true);
+        }
     }
+
+
 }

@@ -1,6 +1,8 @@
 ﻿using Entidad;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Datos
 {
@@ -16,7 +18,6 @@ namespace Datos
                     //Usar el procedimiento almacenado
                     SqlCommand cmd = new SqlCommand("sp_ReadRegion", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-
 
                     connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -43,6 +44,30 @@ namespace Datos
             
             return Regions;
 
+        }
+
+        public string Registrar(string strNombre, bool bitEnabled)
+        {
+            string result = "false";
+
+            using (var connection = new SqlConnection(Conexion.cadena))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_CreateRegion", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter prmName = new SqlParameter("@RegionName", SqlDbType.VarChar, 50);
+                prmName.Value = strNombre;
+                command.Parameters.Add(prmName);
+
+                SqlParameter prmEnabled = new SqlParameter("@Enabled", SqlDbType.Bit);
+                prmEnabled.Value = bitEnabled;
+                command.Parameters.Add(prmEnabled);
+
+                command.ExecuteNonQuery();
+                result = "true";
+            }
+            return result;
         }
     }
 }

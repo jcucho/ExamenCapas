@@ -13,6 +13,11 @@ namespace Presentacion
 
         private void btnListar_Click(object sender, EventArgs e)
         {
+            listar();
+        }
+
+        public void listar()
+        {
             NRegions negocio = new NRegions();
             try
             {
@@ -25,14 +30,18 @@ namespace Presentacion
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show("Comunicarse con el Administrador");
             }
             finally
             {
                 negocio = null;
             }
+        }
 
-            
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            frmRegionRegistrar frm = new frmRegionRegistrar();
+            frm.Show();
         }
     }
 }
