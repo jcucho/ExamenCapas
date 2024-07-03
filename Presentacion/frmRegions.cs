@@ -1,5 +1,6 @@
 using Entidad;
 using Negocio;
+using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Presentacion
@@ -51,7 +52,8 @@ namespace Presentacion
         {
             try
             {
-                if (this.dgvRegions.CurrentRow.Cells[0].Value != null) {
+                if (this.dgvRegions.CurrentRow.Cells[0].Value != null)
+                {
                     frmRegionEditar frm = new frmRegionEditar();
                     frm.txtIdEdit.Text = this.dgvRegions.CurrentRow.Cells[0].Value.ToString();
                     frm.txtRegionNameEdit.Text = this.dgvRegions.CurrentRow.Cells[1].Value.ToString();
@@ -60,7 +62,43 @@ namespace Presentacion
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show("Comunicarse con el Administrador");
+            }
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvRegions.SelectedRows.Count == 0) 
+            {
+                MessageBox.Show("Seleccione una fila");
+            }
+            else
+            {
+                NRegions negocio = new NRegions();
+                try
+                {
+                    int id = Convert.ToInt32(dgvRegions.SelectedRows[0].Cells["RegionId"].Value);
+                    if(negocio.Eliminar(id) == "true")
+                    {
+                        MessageBox.Show("Se Elimino Correctamente");
+                        listar();
+                    } 
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error");
+                    }
+                    
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Comunicarse con el Administrador");
+                }
+                finally
+                {
+                    negocio = null;
+                }
+
             }
 
         }

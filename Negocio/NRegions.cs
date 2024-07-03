@@ -25,6 +25,11 @@ namespace Negocio
         {
             return datos.Editar(intId, strNombre, bitEnabled);
         }
+
+        public string Eliminar(int intId)
+        {
+            return datos.Eliminar(intId);
+        }
     }
 
 

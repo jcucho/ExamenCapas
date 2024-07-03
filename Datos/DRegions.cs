@@ -97,5 +97,25 @@ namespace Datos
             }
             return result;
         }
+
+        public string Eliminar(int intId)
+        {
+            string result = "false";
+
+            using (var connection = new SqlConnection(Conexion.cadena))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_DeleteRegion", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter prmId = new SqlParameter("@RegionId", SqlDbType.Int);
+                prmId.Value = intId;
+                command.Parameters.Add(prmId);
+
+                command.ExecuteNonQuery();
+                result = "true";
+            }
+            return result;
+        }
     }
 }
